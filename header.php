@@ -1,11 +1,13 @@
 <?php
-/*    include_once('variables.php');
-    include_once('functions.php');*/
+    include_once('variables.php');
+    include_once('functions.php');
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="home.php">GBAF</a>
+    <img class="logo-header" alt="logo GRBF" src="https://zupimages.net/up/22/18/baeh.png" style=width:40px)>
+
+    <a class="navbar-brand" href="https://zupimages.net/viewer.php?id=22/18/baeh.png">GBAF</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
