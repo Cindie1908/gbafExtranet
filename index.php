@@ -20,7 +20,15 @@
     <!-- Entête -->
     <?php include_once('title.php'); ?>
 
-
+    <!-- Liste -->
+    <?php include_once('variables.php'); ?>
+    <?foreach ($actors as $actor): ?> 
+        <article>
+            <p><?php echo $actor['logo']; ?></p>
+            <p><?php echo $actor['description']; ?></p>
+            <p><?php echo $actor['nom']; ?></p>
+        </article>
+    <?php endforeach ?>
 
     <?php include_once('footer.php'); ?>
 </body>
