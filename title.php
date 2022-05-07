@@ -1,4 +1,4 @@
 <div class="title">
-    <h1>TITRE</h1>
-    <p>TEXTE</p>
+    <h1>GBAF</h1>
+    <p>Le Groupement Banque Assurance Français</p>
 </diV>

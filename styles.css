@@ -1,3 +1,50 @@
 .logo-header{
-    width:50px
+    width:50px;
+}
+
+.vignette{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border:solid grey 1px;
+    max-width:500px;
+    padding:10px;
+    margin:10px;
+}
+
+.displayvignette{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-vignette{
+    max-width:80px;
+}
+
+.corpsite{
+    text-decoration: none;
+    font-family: Verdana;
+}
+
+.title{
+    position: center;
+    font-family: Verdana;
+}
+
+.lirelasuite{
+    width:100px;
+    margin-left: auto;
+    margin-right:20px;
+}
+
+.container-nav{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+#navbarSupportedContent{
+    display:flex;
+    justify-content: space-around;
 }
