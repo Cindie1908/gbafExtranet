@@ -32,6 +32,32 @@
     font-family: Verdana;
 }
 
+.formulaire-de-connexion{
+    font-family: Verdana;
+    width:500px;
+    text-align:center;
+    border:solid 1px grey;
+    box-shadow:10px 5px 5px grey;
+    margin:auto;
+}
+
+.page-connex{
+    display:flex;
+}
+.seconnecter{
+    background: #CECECE;
+    margin:10px;
+    border:grey;
+    color:white;
+    box-shadow:1px 1px 1px grey;
+    height:25px;
+    width:100px;
+}
+
+.form-control{
+    background-color:#CECECE !important;
+}
+
 .lirelasuite{
     width:100px;
     margin-left: auto;
