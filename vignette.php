@@ -1,20 +1,6 @@
 <?php
-try
-{
-    //connection à MySQL
-	$mysqlClient = new PDO('mysql:host=localhost;dbname=gbaf_extranet;charset=utf8', 'root', 'root');
-}
-catch (Exception $e)
-{
-    //récupération de l'erreur
-    die('Erreur : ' . $e->getMessage());
-}
 
-//récupération des données de la table actors
-$sqlQuery = "SELECT * FROM `actors`";
-$Statement = $mysqlClient->prepare($sqlQuery);
-$Statement->execute();
-$actors = $Statement->fetchAll();   
+$actors = getActors();
 
 foreach ($actors as $actor) {
     ?>
@@ -30,7 +16,7 @@ foreach ($actors as $actor) {
     </div>
     <?php
     }
-    ?>
+?>
 
 
 

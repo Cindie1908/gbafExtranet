@@ -11,7 +11,7 @@ if (isset($_POST['username']) &&  isset($_POST['password'])) {
                 'username' => $user['username'],
             ];
         } else {
-            $errorMessage = sprintf('Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
+            $errorMessage = sprintf('Erreur identifiée : (%s/%s)',
                 $_POST['username'],
                 $_POST['password']
             );
@@ -47,6 +47,6 @@ if (isset($_POST['username']) &&  isset($_POST['password'])) {
 -->
 <?php else: ?>
     <div class="alert alert-success" role="alert">
-        Bonjour <?php echo $loggedUser['email']; ?> et bienvenue sur le site !
+        Bonjour <?php echo $loggedUser['prénom']; ?> <?php echo $loggedUser['nom']; ?> et bienvenue sur le site !
     </div>
 <?php endif; ?>

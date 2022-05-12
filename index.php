@@ -6,27 +6,12 @@
         <link rel="stylesheet" href="styles.css" type="text/css" >
     </head>
 
-<?php
-try
-{
-    //connection à MySQL
-	$mysqlUser = new PDO('mysql:host=localhost;dbname=gbaf_extranet;charset=utf8', 'root', 'root');
-}
-catch (Exception $e)
-{
-    //récupération de l'erreur
-    die('Erreur : ' . $e->getMessage());
-}
 
-//récupération des données de la table actors
-$sqlQuery = "SELECT * FROM `users`";
-$usersStatement = $mysqlUser->prepare($sqlQuery);
-$usersStatement->execute();
-$users = $usersStatement->fetchAll();   
-?>
 
 <?php
+require('query.php');
 
+$users = getDatas();
 // Validation du formulaire
 if (isset($_POST['username']) &&  isset($_POST['password'])) {
     foreach ($users as $user) {
@@ -76,33 +61,30 @@ if (isset($_POST['username']) &&  isset($_POST['password'])) {
     Si utilisateur/trice bien connectée on affiche un message de succès
 -->
 <?php else: ?>
-
     
     <body class="corpsite">
         <div class="container">
 
-        <!-- Si l'utilisateur existe, on affiche la page -->
-        <?php if(isset($loggedUser)): ?>
+            <!-- Si l'utilisateur existe, on affiche la page -->
+            <?php if(isset($loggedUser)): ?>
 
             <!-- Navigation -->
             <?php include_once('header.php'); ?>
 
-        
+
             <!-- Entête -->
             <?php include_once('title.php'); ?>
 
             <!-- Liste -->
-            <?php include_once('vignette.php'); ?>  
+            <?php include_once('vignette.php'); ?>
+            <?php include_once('description.php'); ?>  
 
             <!-- pied -->
             <?php include_once('footer.php'); ?>
 
-        <?php endif; ?>
-
-    </body>
-    </html>
-
 <?php endif; ?>
 
+</body>
+</html>
 
-
+<?php endif; ?>
