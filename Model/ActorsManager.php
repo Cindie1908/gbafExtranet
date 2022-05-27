@@ -25,4 +25,12 @@ class ActorManager extends myPDO{
             $this->addActor($a);
         }
     }
+
+    public function getActorById($id){
+        for($i=0; $i < count($this->actors);$i++){
+            if($this->actors[$i]->getIdActor() === $id){
+                return $this->actors[$i];
+            }
+        }
+    }
 }

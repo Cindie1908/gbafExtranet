@@ -14,4 +14,9 @@ class ActorsController{
         $actors = $this->actorsManager->getActors();
         require "view/viewListOfActors.php";
     }
+
+    public function viewAnActor($id){
+        $actorById = $this->actorsManager->getActorById($id);
+        require "view/viewActor.php";
+    }
 }

@@ -14,9 +14,7 @@ ob_start();
         <div class="displayvignette">
             <p><?= $actors[$i]->getTitre(); ?></p>
             <p><?= substr($actors[$i]->getDescription(),0,120); ?> ...</p>
-            <form action="<?= $actors[$i]->getIdActor(); ?>" method="GET">
-                <button class="lirelasuite"  type="submit" class="btn btn-primary" id="id_actor" value="<?= $actors[$i]->getIdActor(); ?>">Lire la suite</button>
-            </form>
+            <a class="lirelasuite" href="<?= URL ?>actor/view/<?=$actors[$i]->getIdActor(); ?>">Lire la suite</a>
         </div>
     </div>
     <?php endfor; ?>
@@ -24,23 +22,6 @@ ob_start();
     
 
 $content = ob_get_clean();
+$titre = "Liste d'acteurs";
 require "template.php";
 ?>
-
-<?php /*dd($actor);
-require_once("Model/myPDO.php");
-require_once("Model/actorsManager.php");
-require_once("Controller/ActorsController.php");
-
-actorManager::getActors();
-foreach (Actor::$actors as $actor) {
-    echo $actor;
-}
-?>
-
-
-<?php
-include_once('Model/ActorsManager.php');
-$actors = getActors();
-*/
-//foreach ($actors as $actor) {?>
