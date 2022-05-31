@@ -1,11 +1,14 @@
 <?php
-require_once "Model/CommentsManager.php";
+
+namespace Controller;
+
+//require_once "Model/CommentsManager.php";
 
 class CommentsController{
     private $commentsManager;
 
     public function __construct(){
-        $this->commentsManager = new CommentManager;
+        $this->commentsManager = new \Model\CommentsManager();
         $this->commentsManager->callComments();
     }
 
@@ -15,8 +18,17 @@ class CommentsController{
         require "view/viewComments.php";
     }
 
-    /*public function viewCommentsForAnActor($id){
-        $commentsById = $this->commentsManager->getCommentsByActorId($id);
+    public function addComment(){
+        /*$id = $_GET['id'];
+        $actorById = $this->commentsManager->getComments();*/
+        //require "view/addComment.php";
+        $comments = $this->commentsManager->getComments();
         require "view/viewComments.php";
-    }*/
+    }
+
+    public function addCommentValidation(){
+        $this->CommentsManager->addCommentBd($_POST['commentmsg'],$_POST[],$_POST[]);
+        $id = $_GET['id'];
+        header('Location:?page=actors::viewAnActor&id='.$id);
+    }
 }

@@ -1,11 +1,14 @@
 <?php
-require_once "Model/ActorsManager.php";
+
+namespace Controller;
+
+//require_once "Model/ActorsManager.php";
 
 class ActorsController{
     private $actorsManager;
 
     public function __construct(){
-        $this->actorsManager = new ActorManager;
+        $this->actorsManager = new \Model\ActorsManager();
         $this->actorsManager->callActors();
     }
 
@@ -15,7 +18,8 @@ class ActorsController{
         require "view/viewListOfActors.php";
     }
 
-    public function viewAnActor($id){
+    public function viewAnActor(){
+        $id = $_GET['id'];
         $actorById = $this->actorsManager->getActorById($id);
         require "view/viewActor.php";
     }

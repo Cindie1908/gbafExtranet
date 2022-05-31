@@ -1,4 +1,7 @@
 <?php
+namespace Model;
+
+
 class Actor{
     private $titre;
     private $description;
