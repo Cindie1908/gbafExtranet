@@ -1,5 +1,5 @@
 <?php
-require_once("model/myPDO.php");
+require_once("C:\MAMP\htdocs\gbafExtranetCode\Model\myPDO.php");
 
 function getDatas(){
 //récupération des données de la table actors

@@ -3,6 +3,7 @@ ob_start();
 $commentsModalController = new \Controller\CommentsModalController();
 require_once "Controller/CommentsController.php";
     $CommentController = new \Controller\CommentsController();
+    $SumLikeController = new \Controller\SumLikesController();
 ?>
 <div class="body-vignette">
     <div class="container-vignette">
@@ -14,8 +15,15 @@ require_once "Controller/CommentsController.php";
             <div class="displayvignette">
                 <h3><?= $actorById->getTitre(); ?></h3>
                 <p><?= $actorById->getDescription(); ?></p>
+                <div class="container-like">
+                    <img class="logo-profile" alt="like" src="./Images/like.png" )>
+                        <?php $id = $_GET['id'];
+                        echo $SumLikeController->viewSumLikes($id);?> 
+                    <img class="logo-profile" alt="dislike" src="./Images/dislike.png" )>   
+                        <?php $id = $_GET['id'];
+                        echo $SumLikeController->viewSumDislikes($id);?>                                  
+                </div>
             </div>
-
         </div>
         <div class="table-comments">
         <h3>Commentaires</h3>
@@ -27,7 +35,7 @@ require_once "Controller/CommentsController.php";
             </form>-->
             <?php include "addComment.php";?>
             <?php $id = $_GET['id'];
-            echo $CommentController->viewComments($id);?>
+            echo $CommentController->viewComments($id)?>            
         </div>
     </div>
 </div>    
