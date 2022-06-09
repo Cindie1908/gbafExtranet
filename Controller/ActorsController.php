@@ -4,10 +4,15 @@ namespace Controller;
 
 //require_once "Model/ActorsManager.php";
 
-class ActorsController{
+class ActorsController extends ParentController
+{
     private $actorsManager;
 
-    public function __construct(){
+    public function __construct()
+    {
+        if (!$this->isAuthenticated()){
+            $this->redirect("/?page=users::login");
+        }
         $this->actorsManager = new \Model\ActorsManager();
         $this->actorsManager->callActors();
     }
@@ -18,7 +23,8 @@ class ActorsController{
         require "view/viewListOfActors.php";
     }
 
-    public function viewAnActor(){
+    public function viewAnActor()
+    {
         $id = $_GET['id'];
         $actorById = $this->actorsManager->getActorById($id);
         require "view/viewActor.php";

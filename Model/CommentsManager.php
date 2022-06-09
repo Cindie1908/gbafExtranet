@@ -19,7 +19,7 @@ class CommentsManager extends \myPDO{
     public function callComments(){
     //récupération des données de la table comments
         $db = \myPDO::dbConnect();
-        $stmt = $db->prepare("SELECT commentdate, comment AS commentText,comments.id_user AS id_user,id_actor,id_comment,nom,prénom FROM `comments` inner join `users` ON comments.id_user=users.id_user ORDER BY `commentdate` DESC");
+        $stmt = $db->prepare("SELECT DATE_FORMAT(commentdate,'%d/%m/%Y') AS commentdate, comment AS commentText,comments.id_user AS id_user,id_actor,id_comment,nom,prénom FROM `comments` inner join `users` ON comments.id_user=users.id_user ORDER BY `commentdate` DESC");
         $stmt->execute();
         $comments = $stmt->fetchAll();
         foreach ($comments as $comment){
