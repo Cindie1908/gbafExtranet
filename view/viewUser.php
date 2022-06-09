@@ -8,7 +8,7 @@
                 </div>
             </a>
                 <ul class="sous">
-                    <li><a href="#">Mon compte</a></li>
+                    <li><a href="?page=users::parameter">Mon compte</a></li>
                     <li><a href="?page=users::deconnect">Se déconnecter</a></li>
                 </ul>
         </li>

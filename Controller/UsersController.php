@@ -54,8 +54,13 @@ class UsersController extends ParentController
                     $_SESSION["nom"] = $users[$i]->getNom();
                     $_SESSION["prénom"] = $users[$i]->getPrénom();
                     $_SESSION["username"] = $users[$i]->getUsername();
+                    $_SESSION["password"] = $users[$i]->getPassword();
+                    $_SESSION["email"] = $users[$i]->getEmail();
+                    $_SESSION["question"] = $users[$i]->getQuestion();
+                    $_SESSION["réponse"] = $users[$i]->getRéponse();
                     //dump($_SESSION);
-                    //dump($_SESSION["nom"]);
+                    //dump($_SESSION["réponse"]);
+                    //dump($_SESSION["email"]);
                     //$url = "?page=actors::viewActors";
                     $url = "?page=users::homeUser";
                     $this->redirect($url);
@@ -83,12 +88,27 @@ class UsersController extends ParentController
         $this->redirect($url);
     }
 
+    public function parameter(){
+        require "view/parameter.php";
+    }
+
+    public function modifyPassword(){
+        require "view/modifyPassword.php";
+    }
+
+    public function getNewPassword(){
+        require "view/getNewPassword.php";
+    }
+
+    public function invite(){
+        require "view/inviteUsername.php";
+    }
+
 
     /*public function creation()
     {
         if($this->isPost())
         {
-            //$this->fakeLogin();
             // on traite le formulaire de login
             //1-on récupère le username
             //dump($_POST['username']);

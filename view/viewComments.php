@@ -5,7 +5,7 @@ for($i=0; $i < count($comments);$i++) :
     if($comments[$i]->getIdActor() === $id){
 ?>
     <div class="commentsTable">
-            <p class="header-comments">commentaire de <?= $comments[$i]->getName(); ?> <?= $comments[$i]->getFirstname(); ?> du <?=date($comments[$i]->getCommentDate()); ?></p>
+            <p class="header-comments">commentaire de <?= $comments[$i]->getFirstname(); ?> du <?=date($comments[$i]->getCommentDate()); ?></p>
             <p><?= $comments[$i]->getCommentText(); ?></p>
     </div>
     <?php 
