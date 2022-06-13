@@ -27,7 +27,7 @@
     <button class="seconnecter" type="submit" class="btn btn-primary">Se connecter</button>
 </form>
 <div class="insline">
-<p>Mot de passe oublié, cliquer <a href="?page=users::invite">ici</a></p>
+<p>Mot de passe oublié, cliquer <a href="?page=users::inviteUsername">ici</a></p>
     <p>Pas encore inscrit, cliquer <a href="?page=users::inscription">ici</a></p>
 </div>
 <!-- 

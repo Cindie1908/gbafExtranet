@@ -23,4 +23,12 @@ class LikesController{
         $likeById = $this->likesManager->getLikeById($id);
         //require "view/viewLike.php";
     }
+
+    Public function postLikeForAnActor(){
+        //si boutons like ou dislike déjà activé > on ne fait rien
+        //if($likeById[like]===null && $likeById[dislike]===null)
+        // sinon pour liker, on post 1 pour like et 0 pour dislike
+        // ou pour disliker, on post 0 pour like et 1 pour dislike
+
+    }
 }

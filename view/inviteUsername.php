@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="http://localhost/gbafExtranetCode/public/styles.css" type="text/css" >
 
-<form class="formulaire-de-création"  action="index.php?page=users::getNewPassword" method="post">
+<form class="formulaire-de-création"  action="index.php?page=users::invite" method="post">
     <img class="logo-header" alt="logo GRBF" src="https://zupimages.net/up/22/18/baeh.png")>
     <div class="page-creation">
         <div class="flexrow">

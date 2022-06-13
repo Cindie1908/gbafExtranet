@@ -12,14 +12,14 @@ class User{
     private $réponse;
     private $email;
 
-    public function __construct($id_user,$nom,$prénom,$username,$password,$question,$réponse,$email){
+    public function __construct($id_user,$nom,$prenom,$username,$password,$question,$reponse,$email){
         $this->id_user = $id_user;
         $this->nom = $nom;
-        $this->prénom = $prénom;
+        $this->prénom = $prenom;
         $this->username = $username;
         $this->password = $password;
         $this->question = $question;
-        $this->réponse = $réponse;
+        $this->réponse = $reponse;
         $this->email = $email;
     }
 

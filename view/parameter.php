@@ -1,25 +1,13 @@
 <link rel="stylesheet" href="http://localhost/gbafExtranetCode/public/styles.css" type="text/css" >
-<form class="formulaire-de-création"  action="index.php?page=users::creation" method="post">
+<form class="formulaire-de-création"  action="index.php?page=users::update" method="post">
     <img class="logo-header" alt="logo GRBF" src="https://zupimages.net/up/22/18/baeh.png")>
-    <p>Pour créer un compte, merci de renseigner les champs suivants :</p>
+    <p>Vous êtes sur le compte de <?php echo $_SESSION['prénom']; ?> <?php echo $_SESSION['nom']; ?>, votre identifiant est <?php echo $_SESSION['username']; ?>. Pour modifier vos informations, cliquer sur les champs suivants :</p>
     <div class="page-creation">
-        <div class="mb">
-            <label for="username" class="form-label">Nom utilisateur :</label>
-            <input placeholder="<?php echo $_SESSION['username']; ?>" type="htmlspecialchars" class="form-control" id="username" name="username" aria-describedby="username-help" placeholder="prénom.nom">
-        </div>
         <div class="mb">
             <label for="password" class="form-label">Mot de passe :</label>
             <input placeholder="<?php echo $_SESSION['password']; ?>" type="password" class="form-control" id="password" name="password">
         </div>
         <div class="flexrow">
-            <div class="mb">
-                <label for="nom" class="form-label">Nom :</label>
-                <input placeholder="<?php echo $_SESSION['nom']; ?>" type="htmlspecialchars" class="form-control" id="nom" name="nom">
-            </div>
-            <div class="mb">
-                <label for="prénom" class="form-label">Prénom :</label>
-                <input placeholder="<?php echo $_SESSION['prénom']; ?>" type="htmlspecialchars" class="form-control" id="prénom" name="prénom">
-            </div>
             <div class="mb">
                 <label for="email" class="form-label">Email :</label>
                 <input placeholder="<?php echo $_SESSION['email']; ?>" type="htmlspecialchars" class="form-control" id="email" name="email">
@@ -44,3 +32,4 @@
     </div>
     <button class="seconnecter" type="submit" class="btn btn-primary">Modifier</button>
 </form>
+    <button class="seconnecter" class="btn btn-primary"><a href="index.php?page=actors::viewActors">Retour</a></button>
