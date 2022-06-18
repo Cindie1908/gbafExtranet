@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="http://localhost/gbafExtranetCode/public/styles.css" type="text/css" >
-<form class="formulaire-de-création"  action="index.php?page=users::creation" method="post">
+<form class="formulaire-de-création"  action="index.php?page=users::modifyPassword" method="post">
     <img class="logo-header" alt="logo GRBF" src="https://zupimages.net/up/22/18/baeh.png")>
     <p>Pour créer un compte, merci de renseigner les champs suivants :</p>
     <div class="page-creation">
@@ -8,7 +8,7 @@
         </div>
         <div class="mb">
             <label for="password" class="form-label">Mot de passe :</label>
-            <input placeholder="<?php echo $_SESSION['password']; ?>" type="password" class="form-control" id="password" name="password">
+            <input placeholder="***" type="password" class="form-control" id="password" name="password">
         </div>
     </div>
     <button class="seconnecter" type="submit" class="btn btn-primary">Modifier</button>
