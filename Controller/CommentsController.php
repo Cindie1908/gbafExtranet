@@ -2,9 +2,11 @@
 
 namespace Controller;
 
+//use Exception;
 //require_once "Model/CommentsManager.php";
 
-class CommentsController{
+class CommentsController /*extends ParentController*/
+{
     private $commentsManager;
 
     public function __construct(){
@@ -26,9 +28,25 @@ class CommentsController{
         require "view/viewComments.php";
     }
 
-    public function addCommentValidation(){
-        $this->CommentsManager->addCommentBd($_POST['commentmsg'],$_POST[],$_POST[]);
-        $id = $_GET['id'];
-        header('Location:?page=actors::viewAnActor&id='.$id);
+    public function postCommentForAnActor(){
+        if (!isset($_POST['commentmsg']))
+            {
+                echo('votre commentaire est vide');
+                return;
+            }
+
+        $user=$_SESSION["user"];
+        $id_user= $user->getIdUser();
+        $comments =[
+            'comment' => $comment = $_POST['commentmsg'],
+            'id_user' => $id_user,
+            'id_actor' => $id_actor = $_POST['id_actor'],
+        ];
+        //dd($comments);
+
+
+        $this->commentsManager->addCommentBd($comment,$id_user,$id_actor);
+        $url = "?page=actors::viewAnActor&id=$id_actor";
+        header("Location: http://localhost/gbafExtranetCode".$url);
     }
 }

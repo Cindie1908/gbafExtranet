@@ -23,12 +23,12 @@ abstract class ParentController
         return $method === "POST";
     }
 
-    public function fakeLogin()
+
+    public function getUser()
     {
-        $user = [
-            "id" => 3,
-            "username" =>"lola.geny",
-        ];
-        $_SESSION["user"] = $user;
+        if(!$this->isAuthenticated()){
+            return null;
+        }
+        return $_SESSION["user"];
     }
 }

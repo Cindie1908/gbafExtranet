@@ -27,23 +27,20 @@ class UsersManager extends \myPDO{
         return $identifier = $_POST['username'];
     }
 
-    public function callUsers(){
+    public function getUserByUsername(string $username): ?User
+    {
     //récupération des données de la table users
-        if(isset($_POST)){
-            $identifier = $_POST['username'];
-        }
-        
         $db = \myPDO::dbConnect();
-        $stmt = $db->prepare("SELECT id_user,nom,prenom,username,question,password,reponse,email FROM `users` inner join `question`ON users.id_question=question.id_question WHERE username = :id");
+        $stmt = $db->prepare("SELECT id_user,nom,prenom,username,question,password,reponse,email,users.id_question AS id_question FROM `users` inner join `question`ON users.id_question=question.id_question WHERE username = :username LIMIT 1");
         $stmt->execute(
-            ['id' => $identifier,]
+            ['username' => $username,]
         );
         
-        $users = $stmt->fetchAll();
-        foreach ($users as $user){
-            $u = new User($user['id_user'],$user['nom'],$user['prenom'],$user['username'],$user['password'],$user['question'],$user['reponse'],$user['email']);
-            $this->addUser($u);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if($user === false){
+            return null;
         }
+        return new User($user['id_user'],$user['nom'],$user['prenom'],$user['username'],$user['password'],$user['question'],$user['id_question'],$user['reponse'],$user['email']);
     }
 
     public function getUserById($id){
@@ -99,42 +96,41 @@ class UsersManager extends \myPDO{
     public function updateUser()
     {
         $postData = $_POST;
-
-        $username = $_SESSION['username'];
-        $idUser = $_SESSION['idUser'];
+        $user=$_SESSION["user"];
 
         if (isset($postData['question'])){
             $id_question = intval(substr($postData['question'],0,1));
         }else{
-            $id_question = $_SESSION["question"];
+            $id_question= $user->getIdQuestion();
         }
 
-        if (isset($postData['réponse'])){
-            $réponse = $postData['réponse'];
+        if (isset($postData['reponse'])){
+            $reponse = $postData['reponse'];
         }else{
-            $réponse = $_SESSION["réponse"];
+            $reponse= $user->getReponse();
         }
 
         if (isset($postData['password'])){
             $password = $postData['password'];
         }else{
-            $password = $_SESSION['password'];
+            $password = $user->getPassword();
         }
 
         if (isset($postData['email'])){
             $email = $postData['email'];
         }else{
-            $email = $_SESSION["email"];
+            $email = $user->getEmail();
         }
 
-
+        $idUser = $user->getIdUser();
+        
         $db = \myPDO::dbConnect();
-        $stmt = $db->prepare("UPDATE `users` SET `password`=:password, `id_question`=:id_question ,`reponse`=:reponse ,`email`=:email ) WHERE `id_user`=:idUser");
+        $stmt = $db->prepare("UPDATE `users` SET `password`=:password, `id_question`=:id_question ,`reponse`=:reponse ,`email`=:email WHERE `id_user`=:idUser");
         $stmt->execute([
             'idUser' => $idUser,
             'password' => $password,
             'id_question' => $id_question,
-            'reponse' => $réponse,
+            'reponse' => $reponse,
             'email' => $email,
             ]);
 

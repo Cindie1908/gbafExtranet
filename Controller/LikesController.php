@@ -25,7 +25,16 @@ class LikesController{
     }
 
     Public function postLikeForAnActor(){
-        //si boutons like ou dislike déjà activé > on ne fait rien
+        //on récupére le idUser et l'idActor
+        $user=$_SESSION["user"];
+        $id_user= $user->getIdUser();
+        $id_actor = $_POST['id_actor'];
+
+        dump($_SESSION['idUser']);
+        dump($_POST['idActor']);
+        //on récupére les infos like par user et acteur de la bdd
+        //on vérifie si boutons like ou dislike activés 
+        //si l'un des 2 activé > on ne fait rien
         //if($likeById[like]===null && $likeById[dislike]===null)
         // sinon pour liker, on post 1 pour like et 0 pour dislike
         // ou pour disliker, on post 0 pour like et 1 pour dislike

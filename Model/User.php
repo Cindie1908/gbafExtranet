@@ -5,21 +5,23 @@ namespace Model;
 class User{
     private $id_user;
     private $nom;
-    private $prénom;
+    private $prenom;
     private $username;
     private $password;
     private $question;
-    private $réponse;
+    private $id_question;
+    private $reponse;
     private $email;
 
-    public function __construct($id_user,$nom,$prenom,$username,$password,$question,$reponse,$email){
+    public function __construct($id_user,$nom,$prenom,$username,$password,$question,$id_question,$reponse,$email){
         $this->id_user = $id_user;
         $this->nom = $nom;
-        $this->prénom = $prenom;
+        $this->prenom = $prenom;
         $this->username = $username;
         $this->password = $password;
         $this->question = $question;
-        $this->réponse = $reponse;
+        $this->id_question = $id_question;
+        $this->reponse = $reponse;
         $this->email = $email;
     }
 
@@ -30,8 +32,8 @@ class User{
     public function getNom(){return $this->nom;}
     public function setNom($nom){$this->nom = $nom;}
 
-    public function getPrénom(){return $this->prénom;}
-    public function setPrénom($prénom){$this->prénom = $prénom;}
+    public function getPrenom(){return $this->prenom;}
+    public function setPrenom($prenom){$this->prenom = $prenom;}
 
     public function getUsername(){return $this->username;}
     public function setUsername($username){$this->username = $username;}
@@ -42,8 +44,11 @@ class User{
     public function getQuestion(){return $this->question;}
     public function setQuestion($question){$this->question = $question;}
 
-    public function getRéponse(){return $this->réponse;}
-    public function setRéponse($réponse){$this->réponse = $réponse;}
+    public function getIdQuestion(){return $this->id_question;}
+    public function setIdQuestion($id_question){$this->id_question = $id_question;}
+
+    public function getReponse(){return $this->reponse;}
+    public function setReponse($reponse){$this->reponse = $reponse;}
 
     public function getEmail(){return $this->email;}
     public function setEmail($email){$this->email = $email;}

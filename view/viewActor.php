@@ -21,8 +21,9 @@ require_once "Controller/CommentsController.php";
                         echo $SumLikeController->viewSumLikes($id);?> 
                     <img class="logo-profile" alt="dislike" src="./Images/dislike.png" )>   
                         <?php $id = $_GET['id'];
-                        echo $SumLikeController->viewSumDislikes($id);?>                                  
-                </div>
+                        echo $SumLikeController->viewSumDislikes($id);?>   
+                </div>                                     
+                <a class="goback" href="?page=actors::viewActors">Revenir à la liste des partenaires :<img class="logo-profile" alt="goback" src="./Images/back.png" )>   </a> 
             </div>
         </div>
         <div class="table-comments">

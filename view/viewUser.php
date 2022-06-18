@@ -1,10 +1,11 @@
+<?php $user=$this->getUser(); ?>
 <nav>
     <ul>
         <li class="déroulant">
             <a href="#">
                 <div class="headername" >
                     <img class="logo-profile" alt="logo user" src="./Images/profile-user.png" )>
-                    <p><?php echo $_SESSION['nom']; ?> <?php echo $_SESSION['prénom']; ?></p>
+                    <p><?php echo $user->getNom(); ?> <?php echo $user->getPrenom(); ?></p>
                 </div>
             </a>
                 <ul class="sous">
@@ -14,6 +15,7 @@
         </li>
     </ul>
 </nav>
+
 
 
 

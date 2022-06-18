@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use Exception;
+
 class UsersController extends ParentController
 {
     private $usersManager;
@@ -11,7 +13,7 @@ class UsersController extends ParentController
         //$identifier = $this->usersManager->getId();
         //$identifier = $_POST['username'];
         //dump($identifier);
-        $this->usersManager->callUsers();
+        /*$this->usersManager->callUsers();*/
     }
 
     public function viewUsers()
@@ -31,47 +33,32 @@ class UsersController extends ParentController
     {
         if($this->isPost())
         {
-            //$this->fakeLogin();
-            // on traite le formulaire de login
-            //1-on récupère le username
-            //dump($_POST['username']);
-            $identifier = $this->usersManager->getId();
-            //2-on récupère les infos de l'user de la bdd
-            $users = $this->usersManager->getUsers();
-            //dump($identifier);
-            //3-si récupéré, on compare les password
-            for($i=0; $i < count($users);$i++){
-                if($users[$i]->getUsername() === $_POST['username'] &&
-                $users[$i]->getPassword() === $_POST['password'] ){
-            //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur                    
-                    $loggedUser = [
-                        'username' => $users[$i]->getUsername(),
-                        'nom'=> $users[$i]->getNom(),
-                        'prénom'=> $users[$i]->getPrénom(),
-                    ];
-                    //dump($loggedUser);
-                    $_SESSION["user"] = $users[$i];
-                    $_SESSION["nom"] = $users[$i]->getNom();
-                    $_SESSION["prénom"] = $users[$i]->getPrénom();
-                    $_SESSION["username"] = $users[$i]->getUsername();
-                    $_SESSION["password"] = $users[$i]->getPassword();
-                    $_SESSION["email"] = $users[$i]->getEmail();
-                    $_SESSION["question"] = $users[$i]->getQuestion();
-                    $_SESSION["réponse"] = $users[$i]->getRéponse();
-                    $_SESSION["idUser"] = $users[$i]->getIdUser();
-                    //dump($_SESSION);
-                    //dump($_SESSION["réponse"]);
-                    //dump($_SESSION["email"]);
-                    //$url = "?page=actors::viewActors";
-                    $url = "?page=users::homeUser";
-                    $this->redirect($url);
+            try{
+                // on traite le formulaire de login
+                //1-on récupère le username
+                $username = $_POST['username'] ?? "";
+                //2-on récupère les infos de l'user de la bdd
+                $user = $this->usersManager->getUserByUsername($username);
+                if(!$user){
+                    throw new \Exception("username inconnu");
                 }
-            }
-
-            
+                //3-si récupéré, on compare les password
+                if($user->getPassword() !== $_POST['password'] ){
+                    throw new \Exception("mauvais mot de passe");
+                }
+                //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur                    
+                $_SESSION["user"] = $user;
+                $_SESSION["idUser"] = $user->getIdUser();
+                $url = "?page=users::homeUser";
+                $this->redirect($url);
+            }catch(\Exception $e){
+                $errorMessage = $e->getMessage();
+            }   
         }
         require "view/login.php";
     }
+        
+    
 
     public function homeUser(){
         require "view/homeUser.php";
@@ -192,50 +179,125 @@ class UsersController extends ParentController
         }
     }
 
-    public function update()
+    /*public function update()
     {
-        if($this->isPost())
-        {
             $postData = $_POST;
+            $user=$_SESSION["user"];
 
             if (isset($postData['question'])){
                 $id_question = intval(substr($postData['question'],0,1));
             }else{
-                $id_question = $_SESSION["question"];
+                $id_question= $user->getQuestion();
             }
 
-            if (isset($postData['réponse'])){
-                $réponse = $postData['réponse'];
+            if (isset($postData['reponse'])){
+                $reponse = $postData['reponse'];
             }else{
-                $réponse = $_SESSION["réponse"];
+                $reponse= $user->getReponse();
             }
 
             if (isset($postData['password'])){
                 $password = $postData['password'];
             }else{
-                $password = $_SESSION['password'];
+                $password = $user->getPassword();
             }
 
             if (isset($postData['email'])){
                 $email = $postData['email'];
             }else{
-                $email = $_SESSION["email"];
+                $email = $user->getEmail();
             }
-                    dump($_SESSION["idUser"]);
+                    
             $users =[
-            'username' => $username = $_SESSION["username"],
-            'idUser' => $idUser = $_SESSION["idUser"],
+            'username' => $username = $user->getUsername(),
+            'idUser' => $idUser = $user->getIdUser(),
             'password' => $password,
             'id_question' => $id_question,
-            'réponse' => $réponse,
+            'reponse' => $reponse,
             'email' => $email,
             ];
-
+            //dump($users);
             $this->usersManager->updateUser();
 
+            //$url = "?page=users::parameter";
+            //$this->redirect($url);
+            $_SESSION["user"] = $user;
+            $_SESSION["idUser"] = $user->getIdUser();
             $url = "?page=users::homeUser";
             $this->redirect($url);
-        }
+    }*/
+    public function update()
+    {
+            try{
+                // on traite le formulaire de login
+                //1-on récupère le username
+                $postData = $_POST;
+                $user=$_SESSION["user"];
+                $username = $user->getUsername() ?? "";
+                //dump($_SESSION);
+                //dump($username);
+                //2-on récupère les infos de l'user de la bdd
+                $user = $this->usersManager->getUserByUsername($username);
+                if(!$user){
+                    throw new \Exception("username inconnu");
+                }
+                //3-si récupéré, on compare les password
+                /*if($user->getQuestion() !== $_POST['question'] ){
+                    $id_question = intval(substr($_POST['question'],0,1));
+                }
+                if($user->getReponse() !== $_POST['reponse'] ){
+                    $reponse = $_POST['reponse'];
+                }
+                if($user->getPassword() !== $_POST['password'] ){
+                    $password = $_POST['password'];
+                }
+                if($user->getEmail() !== $_POST['email'] ){
+                    $email = $_POST['email'];
+                }*/
+                if (isset($postData['question'])){
+                    $id_question = intval(substr($postData['question'],0,1));
+                }else{
+                    $id_question= $user->getIdQuestion();
+                }
+        
+                if (isset($postData['reponse'])){
+                    $reponse = $postData['reponse'];
+                }else{
+                    $reponse= $user->getReponse();
+                }
+        
+                if (isset($postData['password'])){
+                    $password = $postData['password'];
+                }else{
+                    $password = $user->getPassword();
+                }
+        
+                if (isset($postData['email'])){
+                    $email = $postData['email'];
+                }else{
+                    $email = $user->getEmail();
+                }
+                //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur                    
+                $_SESSION["user"] = $user;
+                $_SESSION["idUser"] = $user->getIdUser();
+                $users =[
+                    'username' => $username = $user->getUsername(),
+                    'idUser' => $idUser = $user->getIdUser(),
+                    'password' => $password,
+                    'id_question' => $id_question,
+                    'reponse' => $reponse,
+                    'email' => $email,
+                    ];
+                   //dump($users);
+                    $this->usersManager->updateUser();
+
+                $url = "?page=users::update";
+                $this->redirect($url);
+            }catch(\Exception $e){
+                $errorMessage = $e->getMessage();
+            }   
+
     }
-            
+    
+
 }
