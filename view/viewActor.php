@@ -1,9 +1,5 @@
 <?php 
 ob_start(); 
-$commentsModalController = new \Controller\CommentsModalController();
-require_once "Controller/CommentsController.php";
-    $CommentController = new \Controller\CommentsController();
-    $SumLikeController = new \Controller\SumLikesController();
 ?>
 <div class="body-vignette">
     <div class="container-vignette">
@@ -16,27 +12,34 @@ require_once "Controller/CommentsController.php";
                 <h3><?= $actorById->getTitre(); ?></h3>
                 <p><?= $actorById->getDescription(); ?></p>
                 <div class="container-like">
-                    <img class="logo-profile" alt="like" src="./Images/like.png" )>
+                    <a href="?page=likes::postLikeForAnActor&id=<?= $id ?>"><img class="logo-profile" alt="like" src="./Images/like.png" )></a>
                         <?php $id = $_GET['id'];
-                        echo $SumLikeController->viewSumLikes($id);?> 
-                    <img class="logo-profile" alt="dislike" src="./Images/dislike.png" )>   
+                        echo $sumLike->getLikeSum();?> 
+                    <a href="?page=likes::postDislikeForAnActor&id=<?= $id ?>"><img class="logo-profile" alt="dislike" src="./Images/dislike.png" )></a>   
                         <?php $id = $_GET['id'];
-                        echo $SumLikeController->viewSumDislikes($id);?>   
+                        echo $sumLike->getDislikeSum();?>   
+                    <?php $id = $_GET['id'];
+                    ?>   
                 </div>                                     
                 <a class="goback" href="?page=actors::viewActors">Revenir à la liste des partenaires :<img class="logo-profile" alt="goback" src="./Images/back.png" )>   </a> 
             </div>
         </div>
         <div class="table-comments">
         <h3>Commentaires</h3>
-            <!--<form>
-                <div class="mb">
-                    <input type="htmlspecialchars" class="commentmsg" id="commentmsg" name="commentmsg" placeholder="Votre commentaire">
-                </div>
-                <button class="seconnecter" type="submit" >Envoyer</button>
-            </form>-->
             <?php include "addComment.php";?>
-            <?php $id = $_GET['id'];
-            echo $CommentController->viewComments($id)?>            
+            <?php 
+            for($i=0; $i < count($comments);$i++) : 
+                $url = explode("/",filter_var($_GET['page']),FILTER_SANITIZE_URL);  
+                $id = $_GET['id'];
+                if($comments[$i]->getIdActor() === $id){
+            ?> 
+                <div class="commentsTable">
+                    <p class="header-comments">commentaire de <?= $comments[$i]->getFirstname(); ?> du <?=date($comments[$i]->getCommentDate()); ?></p>
+                    <p><?= $comments[$i]->getCommentText(); ?></p>
+                </div>
+                <?php 
+                }endfor; 
+                ?>                       
         </div>
     </div>
 </div>    

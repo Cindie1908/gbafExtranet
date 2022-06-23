@@ -6,13 +6,17 @@ require_once("Model/myPDO.php");
 require_once("Model/Comment.php");
 
 class CommentsManager extends \myPDO{
-    private $comments;
+    private $comments = [];
 
     public function addComment($comment){
         $this->comments[] = $comment;
     }
 
     public function getComments(){
+        if(count($this->comments) === 0)
+        {
+            $this->callComments();
+        }
         return $this->comments;
     }
 

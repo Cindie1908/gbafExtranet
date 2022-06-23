@@ -6,13 +6,17 @@ require_once("Model/myPDO.php");
 require_once("Model/SumLike.php");
 
 class SumLikesManager extends \myPDO{
-    private $sumLikes;
+    private $sumLikes = [];
 
     public function addSumLike($sumLike){
-        $this->sumLikes[] = $sumLike;
+        $this->sumLikes[$sumLike->getidActor()] = $sumLike;
     }
 
     public function getSumLikes(){
+        if(count($this->sumLikes) === 0)
+        {
+            $this->callSumLikes();
+        }
         return $this->sumLikes;
     }
 

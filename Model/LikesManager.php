@@ -16,22 +16,20 @@ class LikesManager extends \myPDO{
         return $this->likes;
     }
 
-    public function callLikes(){
+    public function getLikeByUser($id_user,$id_actor)
+    {
     //récupération des données de la table like
-    $userId=$_SESSION['idUser'];
-    $actorId=$_POST['idActor'];
-
         $db = \myPDO::dbConnect();
         $stmt = $db->prepare("SELECT * FROM `like` WHERE id_user = :idUser AND id_actor = :idActor");
         $stmt->execute([
-            'idUser' => $userId,
-            'idActor' => $actorId,   
+            'idUser' => $id_user,
+            'idActor' => $id_actor,   
         ]);
-        $likes = $stmt->fetchAll();
-        foreach ($likes as $like){
-            $l = new Like($like['id-like'],$like['Like'],$like['Dislike'],$like['id_user'],$like['id_actor']);
-            $this->addLike($l);
+        $like = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if($like=== false){
+            return null;
         }
+        return new Like($like['id-like'],$like['Like'],$like['Dislike'],$like['id_user'],$like['id_actor']);
     }
 
     public function getLikeById($id){
@@ -45,9 +43,26 @@ class LikesManager extends \myPDO{
     public function addLikeBd($likeNb,$dislikeNb,$id_user,$id_actor){
         $user=$_SESSION["user"];
         $id_user= $user->getIdUser();
-        $id_actor = $_POST['id_actor'];
-        $likeNb = $_POST['id_actor'];
-        $dislikeNb = $_POST['id_actor'];
+        $id_actor = $_GET['id'];
+        $likeNb = 1;
+        $dislikeNb = 0;
+        $db = \myPDO::dbConnect();
+        $stmt = $db->prepare("INSERT INTO 'like' (Like, Dislike, id_user, id_actor) values (?, ?, ?, ?");
+        $result = $stmt->execute([
+            $likeNb,
+            $dislikeNb,
+            $id_user,
+            $id_actor
+        ]);
+        return ($result > 0);
+    }
+
+    public function addDislikeBd($likeNb,$dislikeNb,$id_user,$id_actor){
+        $user=$_SESSION["user"];
+        $id_user= $user->getIdUser();
+        $id_actor = $_GET['id'];
+        $likeNb = 0;
+        $dislikeNb = 1;
         $db = \myPDO::dbConnect();
         $stmt = $db->prepare("INSERT INTO 'like' (Like, Dislike, id_user, id_actor) values (?, ?, ?, ?");
         $result = $stmt->execute([

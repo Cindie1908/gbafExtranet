@@ -58,7 +58,12 @@ class UsersController extends ParentController
         require "view/login.php";
     }
         
-    
+    public function viewUser(){
+        //$user=$this->getUser();
+        //dd($_SESSION);
+        $user = $_SESSION["user"];
+        require "view/viewUser.php";
+    }
 
     public function homeUser(){
         require "view/homeUser.php";
@@ -113,7 +118,7 @@ class UsersController extends ParentController
                 }
 
                 //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur                    
-                //$_SESSION["user"] = $user;
+                $_SESSION["user"] = $user;
                 //$_SESSION["idUser"] = $user->getIdUser();
                 $users =[
                     'username' => $username = $user->getUsername(),
@@ -141,11 +146,13 @@ class UsersController extends ParentController
         {
             try
             {
+                //dump($_POST);
                 //1-on récupère le username et la question
                 $username = $_POST['username'] ?? "";
                 //$question = $_POST'question'] ?? "";
                 $reponseBd = $_SESSION["reponse"] ?? "";
                 //2-on récupère le post de la réponse
+                $user = $this->usersManager->getUserByUsername($username);
                 $reponse = $_POST['reponse'] ?? "";
                 //dump($reponseBd);
                 //dump($reponse);
@@ -158,7 +165,8 @@ class UsersController extends ParentController
                 //$_SESSION["username"] = $user->getUsername();
                 //$_SESSION["question"] = $user->getQuestion();
                 //$_SESSION["reponse"] = $user->getReponse();
-                        //dump($_SESSION);
+                //$_POST["username"] = $user->getUsername();
+                        //dump($_POST);
                         $url = "?page=users::ModifyPassword";
                         $this->redirect($url);
             }catch(\Exception $e)
@@ -193,9 +201,11 @@ class UsersController extends ParentController
                     throw new \Exception("utilisateur inconnu");
                 }
             //4-si OK, on créé le user en session $_session, on redirige sur modifyPassword, sinon page de login avec msg d'erreur                    
-                    $_POST["question"] = $user->getQuestion();
+                    $_SESSION["question"] = $user->getQuestion();
+                    $_SESSION["reponse"] = $user->getReponse();
+                    $_SESSION["username"] = $user->getUsername();
                     $_POST["username"] = $user->getUsername();
-                //dump($_POST["username"]);
+                //dump($_SESSION);
                     $url = "?page=users::getNewPassword";
                     $this->redirect($url);
             }catch(\Exception $e)

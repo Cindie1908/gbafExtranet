@@ -9,6 +9,8 @@ require_once "Controller/LikesController.php";
     <div class="mb">
         <input type="text" class="commentmsg" id="commentmsg" name="commentmsg" placeholder="Votre commentaire">
     </div>
-    <input class="displayNone" value="<?= $id_actor ?>" id="id_actor" name="id_actor"></p>
-        <button class="seconnecter" type="submit" >Envoyer</button>
+    <input class="" value="1" id="likeOk" name="likeOk"></p>
+        <button class="seconnecter" type="submit" >J'aime</button>
+        <input class="" value="1" id="dislikeOk" name="dislikeOk"></p>
+        <button class="seconnecter" type="submit" >Je n'aime pas</button>
 </form>

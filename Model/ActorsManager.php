@@ -34,6 +34,6 @@ class ActorsManager extends \myPDO{
                 return $this->actors[$i];
             }
         }
-    throw new Exception("Ce partenaire n'existe pas");    
+    //throw new Exception("Ce partenaire n'existe pas");    
     }
 }

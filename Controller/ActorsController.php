@@ -15,6 +15,8 @@ class ActorsController extends ParentController
         }
         $this->actorsManager = new \Model\ActorsManager();
         $this->actorsManager->callActors();
+        $this->SumLikesManager = new \Model\SumLikesManager();
+        $this->CommentsManager = new \Model\CommentsManager();
     }
 
     public function viewActors()
@@ -27,6 +29,13 @@ class ActorsController extends ParentController
     {
         $id = $_GET['id'];
         $actorById = $this->actorsManager->getActorById($id);
+        $sumLikes = $this->SumLikesManager->getSumLikes();
+        $comments = $this->CommentsManager->getComments();
+        $user = $this->getUser();
+        //dd($comments);
+        $sumLike = $sumLikes[$id];
+        $comment = $comments[$id];
+        //dd($sumLike);
         require "view/viewActor.php";
     }
 }

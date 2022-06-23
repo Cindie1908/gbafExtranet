@@ -2,14 +2,15 @@
 
 namespace Controller;
 
-//require_once "Model/ActorsManager.php";
+use Exception;
 
-class LikesController{
+class LikesController extends ParentController
+{
     private $likesManager;
 
     public function __construct(){
         $this->likesManager = new \Model\LikesManager();
-        $this->likesManager->callLikes();
+        //$this->likesManager->callLikes();
     }
 
     public function viewLikes()
@@ -24,20 +25,61 @@ class LikesController{
         //require "view/viewLike.php";
     }
 
-    Public function postLikeForAnActor(){
+    public function postLikeForAnActor(){
         //on récupére le idUser et l'idActor
-        $user=$_SESSION["user"];
+        $user = $this->getUser();
+        $id_actor = $_GET['id'];
         $id_user= $user->getIdUser();
-        $id_actor = $_POST['id_actor'];
-
-        dump($_SESSION['idUser']);
-        dump($_POST['idActor']);
-        //on récupére les infos like par user et acteur de la bdd
+        $likeNb = 1;
+        $dislikeNb = 0;
+        
+         //on récupére les infos like par user et acteur de la bdd
+        $like = $this->likesManager->getLikeByUser($user->getIdUser(),$id_actor);
+       
         //on vérifie si boutons like ou dislike activés 
+        if($like !== null){
         //si l'un des 2 activé > on ne fait rien
-        //if($likeById[like]===null && $likeById[dislike]===null)
+            throw new \Exception("vous avez déjà évalué ce partenaire");
+        }        
         // sinon pour liker, on post 1 pour like et 0 pour dislike
-        // ou pour disliker, on post 0 pour like et 1 pour dislike
+        $likes = [
+            'id_user' => $id_user,
+            'id_actor' => $id_actor,
+            'likeNb' => $likeNb,
+            'dislikeNb' => $dislikeNb,
+        ];
+        //dump($likes);
+        $this->likesManager->addLikeBd($likeNb,$dislikeNb,$id_user,$id_actor);
+        $url = "?page=likes::viewActor&id=$id_actor";
+                $this->redirect($url);
+    }
 
+    public function postDislikeForAnActor(){
+        //on récupére le idUser et l'idActor
+        $user = $this->getUser();
+        $id_actor = $_GET['id'];
+        $likeNb = 0;
+        $dislikeNb = 1;
+         //on récupére les infos like par user et acteur de la bdd
+        $like = $this->likesManager->getLikeByUser($user->getIdUser(),$id_actor);
+       
+        //on vérifie si boutons like ou dislike activés 
+        if($like !== null){
+        //si l'un des 2 activé > on ne fait rien
+            throw new \Exception("vous avez déjà évalué ce partenaire");
+        }        
+        // sinon pour liker, on post 1 pour like et 0 pour dislike
+
+        // ou pour disliker, on post 0 pour like et 1 pour dislike
+        $dislikes = [
+            'id_user' => $id_user,
+            'id_actor' => $id_actor,
+            'likeNb' => $likeNb,
+            'dislikeNb' => $dislikeNb,
+        ];
+        //dump($likes);
+        $this->likesManager->addDislikeBd($likeNb,$dislikeNb,$id_user,$id_actor);
+        $url = "?page=likes::viewActor&id=$id_actor";
+                $this->redirect($url);
     }
 }

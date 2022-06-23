@@ -4,7 +4,7 @@
     <p>Pour créer un compte, merci de renseigner les champs suivants :</p>
     <div class="page-creation">
         <div class="mb">
-            <p>Nom utilisateur : <?php echo $_SESSION['username']; ?></p>
+            <p>Nom utilisateur : <?php echo $_SESSION['username'];?></p>
         </div>
         <div class="mb">
             <label for="password" class="form-label">Mot de passe :</label>

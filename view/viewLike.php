@@ -8,8 +8,6 @@ for($i=0; $i < count($sumLikes);$i++) :
             <p class="like-dislike">: <?= $sumLikes[$i]->getLikeSum(); ?></p>
     </div>
     <?php 
-    /*}else{
-        ?><p>Soyez le premier à commenter !</p>
-    <?php*/
+
 }endfor; 
 ?>
