@@ -30,26 +30,7 @@
     <p><?= $errorMessage ?></p>
 <?php endif; ?>
 <div class="insline">
-<p>Mot de passe oublié, cliquer <a href="?page=users::inviteUsername">ici</a></p>
+    <p>Mot de passe oublié, cliquer <a href="?page=users::inviteUsername">ici</a></p>
     <p>Pas encore inscrit, cliquer <a href="?page=users::inscription">ici</a></p>
 </div>
-<!-- 
-    Si utilisateur/trice bien connectée on affiche un message de succès
--->
-<?php else: ?>
-    
-    <body class="corpsite">
-        <div class="container">
-
-            <!-- Si l'utilisateur existe, on affiche la page -->
-            <?php if(isset($loggedUser)): 
-                return $isconnected = "true";
-                ?>
-
-
-    <?php endif; ?>
-            </div>
-    </body>
-</html>
-
 <?php endif; ?>

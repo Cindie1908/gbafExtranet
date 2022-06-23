@@ -10,24 +10,7 @@ class UsersController extends ParentController
 
     public function __construct(){
         $this->usersManager = new \Model\UsersManager();
-        //$identifier = $this->usersManager->getId();
-        //$identifier = $_POST['username'];
-        //dump($identifier);
-        /*$this->usersManager->callUsers();*/
     }
-
-    public function viewUsers()
-    {
-        $users = $this->usersManager->getUsers();
-        require "view/login.php";
-    }
-
-    /*public function viewAnUser(){
-        $id = $_GET['id'];
-        $userById = $this->usersManager->getuserById($id);
-        require "view/login.php";
-    }*/
-
 
     public function login()
     {
@@ -79,7 +62,6 @@ class UsersController extends ParentController
     public function deconnect()
     {
         session_destroy();
-        //dump($_SESSION);
         $url = "?page=users::login";
         $this->redirect($url);
     }
@@ -99,7 +81,6 @@ class UsersController extends ParentController
                 $postData = $_POST;
                 //2-on récupère les infos de l'user de la bdd
                 $user = $this->usersManager->getUserByUsername($username);
-                //dump($user);
                 if(!$user){
                     throw new \Exception("username inconnu");
                 }
@@ -148,13 +129,8 @@ class UsersController extends ParentController
                     throw new \Exception("mauvaise réponse");
                 }
                 //4-si OK, on créé le user en session $_session, on redirige sur modifyPassword, sinon page de login avec msg d'erreur                    
-                //$_SESSION["username"] = $user->getUsername();
-                //$_SESSION["question"] = $user->getQuestion();
-                //$_SESSION["reponse"] = $user->getReponse();
-                //$_POST["username"] = $user->getUsername();
-                        //dump($_POST);
-                        $url = "?page=users::ModifyPassword";
-                        $this->redirect($url);
+                $url = "?page=users::ModifyPassword";
+                $this->redirect($url);
             }catch(\Exception $e)
             {
                 $errorMessage = $e->getMessage();

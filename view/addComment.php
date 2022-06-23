@@ -1,4 +1,4 @@
-<?php 
+<? 
 require_once "Controller/CommentsController.php";
     $CommentController = new \Controller\CommentsController();
 

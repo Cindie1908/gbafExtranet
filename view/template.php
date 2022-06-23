@@ -11,5 +11,5 @@
             <?= $content ?>
         </div>
         <?php include_once('view/footer.php'); ?>
-</body>
+    </body>
 </html>

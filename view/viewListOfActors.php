@@ -23,7 +23,7 @@ ob_start();
             <a class="lirelasuite" href="?page=actors::viewAnActor&id=<?=$actors[$i]->getIdActor(); ?>">Lire la suite</a>
         </div>
     </div>
-    <?php endfor; ?>
+<?php endfor; ?>
 <?php
     
 

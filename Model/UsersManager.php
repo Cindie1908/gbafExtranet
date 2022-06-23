@@ -16,17 +16,6 @@ class UsersManager extends \myPDO{
         return $this->users;
     }
 
-    /*public function getId()
-    {
-        if(isset($_POST)){
-            return $identifier = $_POST['username'];
-        }else{
-            return $identifier = $_SESSION['username'];
-        
-        
-        return $identifier = $_POST['username'];
-    }*/
-
     public function getUserByUsername(string $username): ?User
     {
     //récupération des données de la table users

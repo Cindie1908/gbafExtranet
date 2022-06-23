@@ -4,14 +4,11 @@ for($i=0; $i < count($comments);$i++) :
     $id = $_GET['id'];
     if($comments[$i]->getIdActor() === $id){
 ?>
-    <div class="commentsTable">
-            <p class="header-comments">commentaire de <?= $comments[$i]->getFirstname(); ?> du <?=date($comments[$i]->getCommentDate()); ?></p>
-            <p><?= $comments[$i]->getCommentText(); ?></p>
-    </div>
-    <?php 
-    /*}else{
-        ?><p>Soyez le premier à commenter !</p>
-    <?php*/
+<div class="commentsTable">
+    <p class="header-comments">commentaire de <?= $comments[$i]->getFirstname(); ?> du <?=date($comments[$i]->getCommentDate()); ?></p>
+    <p><?= $comments[$i]->getCommentText(); ?></p>
+</div>
+<?php 
 }endfor; 
 ?>
 
