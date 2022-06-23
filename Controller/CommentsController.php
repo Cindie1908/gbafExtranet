@@ -2,8 +2,6 @@
 
 namespace Controller;
 
-//use Exception;
-//require_once "Model/CommentsManager.php";
 
 class CommentsController /*extends ParentController*/
 {
@@ -21,9 +19,6 @@ class CommentsController /*extends ParentController*/
     }
 
     public function addComment(){
-        /*$id = $_GET['id'];
-        $actorById = $this->commentsManager->getComments();*/
-        //require "view/addComment.php";
         $comments = $this->commentsManager->getComments();
         require "view/viewComments.php";
     }
@@ -42,9 +37,6 @@ class CommentsController /*extends ParentController*/
             'id_user' => $id_user,
             'id_actor' => $id_actor = $_POST['id_actor'],
         ];
-        //dd($comments);
-
-
         $this->commentsManager->addCommentBd($comment,$id_user,$id_actor);
         $url = "?page=actors::viewAnActor&id=$id_actor";
         header("Location: http://localhost/gbafExtranetCode".$url);

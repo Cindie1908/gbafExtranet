@@ -23,7 +23,7 @@ class CommentsManager extends \myPDO{
     public function callComments(){
     //récupération des données de la table comments
         $db = \myPDO::dbConnect();
-        $stmt = $db->prepare("SELECT DATE_FORMAT(commentdate,'%d/%m/%Y') AS commentdate, comment AS commentText,comments.id_user AS id_user,id_actor,id_comment,nom,prenom FROM `comments` inner join `users` ON comments.id_user=users.id_user ORDER BY `commentdate` DESC");
+        $stmt = $db->prepare("SELECT DATE_FORMAT(commentdate,'%d/%m/%Y') AS commentdate, comment AS commentText,comments.id_user AS id_user,id_actor,id_comment,nom,prenom FROM `comments` inner join `users` ON comments.id_user=users.id_user ORDER BY `id_comment` DESC");
         $stmt->execute();
         $comments = $stmt->fetchAll();
         foreach ($comments as $comment){
@@ -34,7 +34,6 @@ class CommentsManager extends \myPDO{
 
     public function addCommentBd($comment,$id_user,$id_actor){
         //envoi des données à la table comments
-        
         $user=$_SESSION["user"];
         $id_user= $user->getIdUser();
         $id_actor = $_POST['id_actor'];

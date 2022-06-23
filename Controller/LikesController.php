@@ -13,7 +13,7 @@ class LikesController extends ParentController
         //$this->likesManager->callLikes();
     }
 
-    public function viewLikes()
+    /*public function viewLikes()
     {
         $likes = $this->likesManager->getLikes();
         //require "view/viewLike.php";
@@ -23,7 +23,7 @@ class LikesController extends ParentController
         $id = $_GET['id'];
         $likeById = $this->likesManager->getLikeById($id);
         //require "view/viewLike.php";
-    }
+    }*/
 
     public function postLikeForAnActor(){
         //on récupére le idUser et l'idActor
@@ -32,10 +32,8 @@ class LikesController extends ParentController
         $id_user= $user->getIdUser();
         $likeNb = 1;
         $dislikeNb = 0;
-        
-         //on récupére les infos like par user et acteur de la bdd
+        //on récupére les infos like par user et acteur de la bdd
         $like = $this->likesManager->getLikeByUser($user->getIdUser(),$id_actor);
-       
         //on vérifie si boutons like ou dislike activés 
         if($like !== null){
         //si l'un des 2 activé > on ne fait rien
@@ -58,6 +56,7 @@ class LikesController extends ParentController
         //on récupére le idUser et l'idActor
         $user = $this->getUser();
         $id_actor = $_GET['id'];
+        $id_user= $user->getIdUser();
         $likeNb = 0;
         $dislikeNb = 1;
          //on récupére les infos like par user et acteur de la bdd
@@ -68,9 +67,7 @@ class LikesController extends ParentController
         //si l'un des 2 activé > on ne fait rien
             throw new \Exception("vous avez déjà évalué ce partenaire");
         }        
-        // sinon pour liker, on post 1 pour like et 0 pour dislike
-
-        // ou pour disliker, on post 0 pour like et 1 pour dislike
+        //pour disliker, on post 0 pour like et 1 pour dislike
         $dislikes = [
             'id_user' => $id_user,
             'id_actor' => $id_actor,

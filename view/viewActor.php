@@ -14,7 +14,10 @@ ob_start();
                 <div class="container-like">
                     <a href="?page=likes::postLikeForAnActor&id=<?= $id ?>"><img class="logo-profile" alt="like" src="./Images/like.png" )></a>
                         <?php $id = $_GET['id'];
-                        echo $sumLike->getLikeSum();?> 
+                        if($sumLike->getLikeSum() !== null){
+                            echo $sumLike->getLikeSum();
+                        }
+                        ?> 
                     <a href="?page=likes::postDislikeForAnActor&id=<?= $id ?>"><img class="logo-profile" alt="dislike" src="./Images/dislike.png" )></a>   
                         <?php $id = $_GET['id'];
                         echo $sumLike->getDislikeSum();?>   
