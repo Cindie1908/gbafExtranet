@@ -22,11 +22,11 @@ class UsersController extends ParentController
         require "view/login.php";
     }
 
-    public function viewAnUser(){
+    /*public function viewAnUser(){
         $id = $_GET['id'];
         $userById = $this->usersManager->getuserById($id);
         require "view/login.php";
-    }
+    }*/
 
 
     public function login()
@@ -88,10 +88,6 @@ class UsersController extends ParentController
         require "view/parameter.php";
     }
 
-    /*public function modifyPassword(){
-        require "view/modifyPassword.php";
-    }*/
-
     public function modifyPassword()
     {
         if($this->isPost())
@@ -101,8 +97,6 @@ class UsersController extends ParentController
                 //1-on récupère le username
                 $username = $_SESSION['username'] ?? "";
                 $postData = $_POST;
-                //dump($postData);
-                //dump($username);
                 //2-on récupère les infos de l'user de la bdd
                 $user = $this->usersManager->getUserByUsername($username);
                 //dump($user);
@@ -110,16 +104,13 @@ class UsersController extends ParentController
                     throw new \Exception("username inconnu");
                 }
                 //3-si récupéré, on compare les password
-
                 if (isset($postData['password'])){
                     $password = $postData['password'];
                 }else{
                     $password = $user->getPassword();
                 }
-
                 //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur                    
                 $_SESSION["user"] = $user;
-                //$_SESSION["idUser"] = $user->getIdUser();
                 $users =[
                     'username' => $username = $user->getUsername(),
                     'idUser' => $idUser = $user->getIdUser(),
@@ -128,9 +119,7 @@ class UsersController extends ParentController
                     'reponse' => $reponse= $user->getReponse(),
                     'email' => $email= $user->getEmail(),
                     ];
-                //dump($users);
                     $this->usersManager->updateUser();
-
                 $url = "?page=users::login";
                 $this->redirect($url);
             }catch(\Exception $e){
@@ -146,7 +135,6 @@ class UsersController extends ParentController
         {
             try
             {
-                //dump($_POST);
                 //1-on récupère le username et la question
                 $username = $_POST['username'] ?? "";
                 //$question = $_POST'question'] ?? "";
@@ -154,8 +142,6 @@ class UsersController extends ParentController
                 //2-on récupère le post de la réponse
                 $user = $this->usersManager->getUserByUsername($username);
                 $reponse = $_POST['reponse'] ?? "";
-                //dump($reponseBd);
-                //dump($reponse);
                 //3-si récupéré, on compare les réponses
                 if($reponseBd !== $reponse)
                 {
@@ -189,8 +175,6 @@ class UsersController extends ParentController
                 $username = $_POST['username'] ?? "";
                 //2-on récupère les infos de l'user de la bdd
                 $user = $this->usersManager->getUserByUsername($username);
-                //dump($user);
-                //dump($username);
                 if(!$user)
                 {
                     throw new \Exception("username inconnu");
@@ -205,7 +189,6 @@ class UsersController extends ParentController
                     $_SESSION["reponse"] = $user->getReponse();
                     $_SESSION["username"] = $user->getUsername();
                     $_POST["username"] = $user->getUsername();
-                //dump($_SESSION);
                     $url = "?page=users::getNewPassword";
                     $this->redirect($url);
             }catch(\Exception $e)
@@ -261,8 +244,6 @@ class UsersController extends ParentController
                 $postData = $_POST;
                 $user=$_SESSION["user"];
                 $username = $user->getUsername() ?? "";
-                //dump($_SESSION);
-                //dump($username);
                 //2-on récupère les infos de l'user de la bdd
                 $user = $this->usersManager->getUserByUsername($username);
                 if(!$user){
@@ -303,9 +284,7 @@ class UsersController extends ParentController
                     'reponse' => $reponse,
                     'email' => $email,
                     ];
-                   //dump($users);
                     $this->usersManager->updateUser();
-
                 $url = "?page=users::update";
                 $this->redirect($url);
             }catch(\Exception $e){

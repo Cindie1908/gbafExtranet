@@ -30,7 +30,7 @@ ob_start();
             </div>
             <div class="mb">
                 <label for="réponse" class="form-label">Réponse :</label>
-                <input placeholder="<?php echo $user->getReponse(); ?>" type="htmlspecialchars" class="form-control" id="réponse" name="réponse">
+                <input placeholder="<?php echo $user->getReponse(); ?>" type="htmlspecialchars" class="form-control" id="reponse" name="reponse">
             </div>
         </div>    
     </div>
