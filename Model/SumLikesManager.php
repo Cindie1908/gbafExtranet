@@ -24,7 +24,7 @@ class SumLikesManager extends \myPDO{
     public function callSumLikes(){
         //récupération des données de la table actors
             $db = \myPDO::dbConnect();
-            $stmt = $db->prepare("SELECT SUM( `like`) AS totalLike, SUM(`Dislike`) AS totalDislike,  `id_actor`from `like` GROUP BY `id_actor`");
+            $stmt = $db->prepare("SELECT SUM( `likenb`) AS totalLike, SUM(`dislikenb`) AS totalDislike,  `id_actor`from `like` GROUP BY `id_actor`");
             $stmt->execute();
             $sumLikes = $stmt->fetchAll();
             foreach ($sumLikes as $sumLike){

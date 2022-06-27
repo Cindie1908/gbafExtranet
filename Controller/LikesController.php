@@ -10,20 +10,7 @@ class LikesController extends ParentController
 
     public function __construct(){
         $this->likesManager = new \Model\LikesManager();
-        //$this->likesManager->callLikes();
     }
-
-    /*public function viewLikes()
-    {
-        $likes = $this->likesManager->getLikes();
-        //require "view/viewLike.php";
-    }
-
-    public function viewLikeForAnActor(){
-        $id = $_GET['id'];
-        $likeById = $this->likesManager->getLikeById($id);
-        //require "view/viewLike.php";
-    }*/
 
     public function postLikeForAnActor(){
         //on récupére le idUser et l'idActor
@@ -48,7 +35,7 @@ class LikesController extends ParentController
         ];
         //dump($likes);
         $this->likesManager->addLikeBd($likeNb,$dislikeNb,$id_user,$id_actor);
-        $url = "?page=likes::viewActor&id=$id_actor";
+        $url = "?page=actors::viewAnActor&id=$id_actor";
                 $this->redirect($url);
     }
 
@@ -76,7 +63,7 @@ class LikesController extends ParentController
         ];
         //dump($likes);
         $this->likesManager->addDislikeBd($likeNb,$dislikeNb,$id_user,$id_actor);
-        $url = "?page=likes::viewActor&id=$id_actor";
+        $url = "?page=actors::viewAnActor&id=$id_actor";
                 $this->redirect($url);
     }
 }

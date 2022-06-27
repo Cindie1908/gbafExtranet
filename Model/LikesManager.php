@@ -29,7 +29,7 @@ class LikesManager extends \myPDO{
         if($like=== false){
             return null;
         }
-        return new Like($like['id-like'],$like['Like'],$like['Dislike'],$like['id_user'],$like['id_actor']);
+        return new Like($like['id-like'],$like['likenb'],$like['dislikenb'],$like['id_user'],$like['id_actor']);
     }
 
     public function getLikeById($id){
@@ -44,15 +44,15 @@ class LikesManager extends \myPDO{
         $user=$_SESSION["user"];
         $id_user= $user->getIdUser();
         $id_actor = $_GET['id'];
-        $likeNb = 1;
-        $dislikeNb = 0;
+        $likeNb = intval(1);
+        $dislikeNb = intval(0);
         $db = \myPDO::dbConnect();
-        $stmt = $db->prepare("INSERT INTO 'like' (Like, Dislike, id_user, id_actor) values (?, ?, ?, ?");
+        $stmt = $db->prepare("INSERT INTO `like` (likenb, dislikenb, id_user, id_actor) values (:likenb, :dislikenb, :id_user, :id_actor)");
         $result = $stmt->execute([
-            $likeNb,
-            $dislikeNb,
-            $id_user,
-            $id_actor
+            'likenb' => $likeNb,
+            'dislikenb' => $dislikeNb,
+            'id_user' => $id_user,
+            'id_actor' => $id_actor
         ]);
         return ($result > 0);
     }
@@ -61,15 +61,15 @@ class LikesManager extends \myPDO{
         $user=$_SESSION["user"];
         $id_user= $user->getIdUser();
         $id_actor = $_GET['id'];
-        $likeNb = 0;
-        $dislikeNb = 1;
+        $likeNb = intval(0);
+        $dislikeNb = intval(1);
         $db = \myPDO::dbConnect();
-        $stmt = $db->prepare("INSERT INTO 'like' (Like, Dislike, id_user, id_actor) values (?, ?, ?, ?");
+        $stmt = $db->prepare("INSERT INTO `like` (likenb, dislikenb, id_user, id_actor) values (:likenb, :dislikenb, :id_user, :id_actor)");
         $result = $stmt->execute([
-            $likeNb,
-            $dislikeNb,
-            $id_user,
-            $id_actor
+            'likenb' => $likeNb,
+            'dislikenb' => $dislikeNb,
+            'id_user' => $id_user,
+            'id_actor' => $id_actor
         ]);
         return ($result > 0);
     }
