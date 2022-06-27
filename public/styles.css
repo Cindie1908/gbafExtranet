@@ -1,0 +1,513 @@
+#navbarSupportedContent{
+    display:flex;
+    justify-content: space-around;
+}
+p, .page-creation{
+    font-family: Verdana;
+}
+.headername{
+    font-size:12px;
+}
+.deroulant > a::after{
+    content:" ▼";
+    font-size: 12px;
+}
+a{
+    font-size:12px;
+}
+.title{
+    font-size:12px;
+}
+.form-control{
+    background-color:#CECECE !important;
+}
+.text-center{
+    display:flex;
+    flex-direction: row;
+    margin:auto;
+    text-align: center;
+}
+.text-dark{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    font-family: Verdana;
+    font-size:10px;
+    text-decoration:none;
+    color:black;
+    padding:2px;
+}
+footer{
+    bottom:0;
+    position:fixed;
+    width:100%;
+    height:30px;
+    margin:auto;
+    display:flex;
+    background-color: white;
+}
+
+.form-label{
+    min-width:100px;
+    padding-left:50px;
+    margin-top:10px;
+}
+
+
+
+
+/*formulaire de connexion*/
+.logo-header{
+    width:50px;
+    padding-left: 0px;
+}
+.formulaire-de-connexion{
+    font-family: Verdana;
+    width:500px;
+    text-align:center;
+    border:solid 1px grey;
+    box-shadow:10px 5px 5px grey;
+    margin:auto;
+}
+.page-connex{
+    display:flex;
+}
+.seconnecter{
+    background: #CECECE;
+    margin:10px;
+    border:grey;
+    color:white;
+    box-shadow:1px 1px 1px grey;
+    height:25px;
+    width:100px;
+}
+.mb{
+    height:30px;
+}
+.insline p{
+    height:50px;
+    text-align: center;
+    font-family: Verdana;
+    font-style: italic;
+}
+
+/*vue user dans barre de menu*/
+.headername{
+    display:flex;
+    list-style-type:none;
+    font-family: Verdana;
+    flex-direction:row; 
+    margin:auto;
+    padding-right: 20px;
+    text-decoration: none;
+    outline: none;
+    font-size:12px;
+}
+ul{
+    list-style-type:none;
+}
+.container-nav{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    vertical-align: baseline;
+    box-shadow:10px 10px  10px grey;
+    margin-bottom:30px;
+    width:100%;
+    padding:10px;
+    
+}
+a:hover{
+    color:grey;
+}
+.sous{
+    display: none;
+    background-color:rgba(200,200,200,0.5);
+    text-decoration: none;
+}
+nav > ul li:hover .sous{
+    display:block;
+}
+.sous li{
+    float:none;
+    width:100%;
+    text-align: left;
+    text-decoration: none;
+    list-style-type:none;
+}
+.sous a:hover {
+    background-color: rgba(200,200,200,0.1);
+}
+a{
+    text-decoration: none;
+    font-family: Verdana;
+    color:black;
+}
+.logo-profile{
+    height:24px; 
+    width:24px; 
+    margin:auto;
+}
+.homeUser{
+    display:flex;
+    margin:auto;
+    font-size: xx-large;
+    color:grey;
+    font-family: Verdana;
+}
+.home{
+    display:flex;
+    flex-direction: column;
+    margin:auto;
+}
+.visit{
+    text-decoration: none;
+    font-size: large;
+    color:grey;
+    border:solid 1px white;
+    box-shadow:10px 5px 5px grey;
+    width:20%;
+    text-align: center;
+    margin:auto;
+    margin-top:30px;
+}
+
+/*page de présentation*/
+h2, h3{
+    position: center;
+    font-family: Verdana;
+    text-align:center;
+}
+h2{
+    color:red;
+    font-size:14px;
+}
+h3{
+    color:black;
+    font-size:12px;
+}
+.title{
+    position: center;
+    font-family: Verdana;
+    text-align:center;
+    color:red;
+}
+.generalities{
+    font-family: Verdana;
+    font-size:12px;
+    margin:10px 100px 10px 100px;
+    text-align: justify;
+}
+.corpsite, .formContact{
+    text-decoration: none;
+    font-family: Verdana;
+}
+.image-header{
+    height:200px;
+    background-image: url(https://zupimages.net/up/22/22/q89d.png);
+    background-repeat: no-repeat;
+    background-position: 30%;
+    padding:0;
+}
+
+/*vignette*/
+.vignette{
+    display:flex;
+    justify-content: space-between;
+    border:solid white 1px;
+    padding:10px;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.displayvignette{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Verdana;
+}
+.vignette{
+    max-width:500px;
+    margin:30px auto; 
+}
+.displayvignette{
+    font-size:12px;
+}
+.logo-vignette{
+    max-width:80px;
+}
+.body-vignette{
+    height:1000px;
+    background-image: url(https://zupimages.net/up/22/22/q89d.png);
+    background-repeat: no-repeat;
+    background-position: 30%;
+    padding:3%;
+}
+.displayNone{
+    display:none;
+}
+.lirelasuite{
+    margin-left: auto;
+    margin-right:20px;
+    text-decoration: none;
+    border:solid 1px grey;
+    border-radius: 5px;
+    text-align:center;
+    width:120px;
+    height:25px;    
+}
+.container-vignette{
+    height:2000px;
+    background-color: rgba(255,255,255,0.5);
+    width:50%;
+    margin:auto;
+    padding:1%;
+}
+.container-like{
+    display:flex;
+    width:50%;
+    margin-right:50%;
+}
+.goback{
+    display:flex;
+    margin-left:40%;
+    width:60%;
+}
+
+/*Commentaires*/
+.table-comments{
+    border:solid white 1px;
+    max-width:500px;
+    padding:10px;
+    margin:30px auto;
+    background: linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.2));
+    min-height:600px;
+}
+.header-comments{
+    width:300px;
+    margin:auto;
+    font-family: Verdana;
+    font-size:10px;
+    font-style: italic;
+}
+.commentsTable{
+    width:96%;
+    margin:auto;
+    font-family: Verdana;
+    background-color: rgba(255,255,255,0.5);
+}
+.commentmsg{
+    width:96%;
+    height:30px;
+    margin:auto;
+    border:solid 1px white;
+}
+
+/*formulaire de création*/
+.container{
+    overflow:auto;
+    max-height:1600px;
+}
+.page-creation{
+    display:flex;
+    flex-direction:column;
+}
+.flexrow{
+    display:flex;
+}
+.formContact{
+    font-size: 15px;
+    display:flex;
+    flex-direction: column;
+    width:50%;
+    margin:auto;
+}
+.formContact input, .formContact textarea{
+    margin-bottom: 35px;
+    height:50px;
+}
+.formContact textarea{
+    height:340px;
+}
+.gobackContact{
+    margin-left: 80%;
+}
+
+
+@media (orientation: portrait){
+
+    /*formulaire de connexion*/
+    .logo-header{
+        width:150px;
+        margin-bottom: 50px;
+    }
+    .formulaire-de-connexion{
+        width:90%;
+        height:40%;
+        font-size: 30px;
+        border:solid 1px white;
+        box-shadow:10px 5px 5px white;
+    }
+    .page-connex{
+        flex-direction:column;
+    }
+    .mb{
+        margin-bottom: 30px;
+    }
+    input, .insline{
+        font-size: 30px;
+    }
+    .seconnecter{
+        width:90%;
+        height:50px;
+        font-size: 30px;
+    }
+    .insline p{
+        margin-bottom: 100px;
+    }
+    .insline a{
+        width:80px;
+        height:80px;
+        font-size: 50px;
+        color:white;
+        background-color: red;
+    }
+
+    /*vue user dans barre de menu*/
+    .headername, li{
+        font-size:26px;
+    }
+    .container-nav{
+        display:flex;
+        flex-direction: row-reverse;
+    }
+    .headername p{
+        display:flex;
+        flex-direction: row-reverse;
+    }
+    li a {
+        font-size:26px;
+    }
+    .logo-profile{
+        height:80px; 
+        width:80px; 
+        margin:auto;
+    }
+    #navbarSupportedContent{
+        display:flex;
+        flex-direction: column;
+    }
+    .homeUser{
+        display:flex;
+        margin:auto;
+        font-size: 50px;
+        color:grey;
+        font-family: Verdana;
+    }
+    .visit{
+        text-decoration: none;
+        font-size: 50px;
+        color:white;
+        background-color: grey;
+        border:solid 1px white;
+        box-shadow:10px 5px 5px grey;
+        width:90%;
+        text-align: center;
+        margin:auto;
+        margin-top:50px;
+    }
+
+    /*page de présentation*/
+    .generalities li{
+        font-size:12px;
+    }
+
+    /*vignette*/
+    .vignette{
+        max-width:90%;
+        flex-direction: column;
+    }
+        .displayvignette{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 27px;
+        border: 1px solid grey;
+        padding:10px;
+    }
+    .logo-vignette{
+        max-width:200px;
+    }
+    .lirelasuite{
+        width:220px;
+        height:50px;
+        font-size: 27px;
+    }
+    .body-vignette{
+        height:2000px;
+        background-size: cover;
+    }
+    .container-vignette{
+        height:2000px;
+        width:80%;
+        margin:auto;
+        padding:1%;
+    }
+    .container-vignette h2{
+        font-size: 27px;
+    }
+    .container-vignette h3, .goback, .formulaire-de-création, #question{
+        font-size: 25px;
+    }
+    .container-like .logo-profile{
+        height:26px; 
+        width:26px; 
+        margin:auto;
+    }
+
+    /*Commentaires*/
+    .table-comments{
+        max-width:90%;
+        margin:auto;
+    }
+    .header-comments{
+        width:500px;
+        font-size:20px;
+    }
+    .commentsTable{
+        width:96%;
+        font-size: 25px;
+    }
+
+    /*formulaire de création*/
+    .flexrow{
+        flex-direction: column;
+    }
+    #question{
+        margin-left: 200px;
+        margin-bottom:40px;
+    }
+    #reponse{
+        margin-top:30px;
+        margin-bottom:40px;
+    }
+
+    .formulaire-de-création .seconnecter{
+        margin-top:30px;
+    }
+    .seconnecter a{
+        margin-top:30px;
+        font-size: 25px;
+    }
+
+    /*formulaire de contact*/
+    .formContact{
+        font-size: 25px;
+        width:90%;
+    }
+    .formContactTitle{
+        font-size: 35px;
+    }
+    .gobackContact{
+        font-size: 25px;
+    }
+
+}

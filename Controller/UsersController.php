@@ -42,9 +42,9 @@ class UsersController extends ParentController
     }
         
     public function viewUser(){
-        //$user=$this->getUser();
+        $user=$this->getUser();
         //dd($_SESSION);
-        $user = $_SESSION["user"];
+        //$user = $_SESSION["user"];
         require "view/viewUser.php";
     }
 
@@ -214,6 +214,7 @@ class UsersController extends ParentController
 
     public function update()
     {
+        if($this->isPost())
             try{
                 // on traite le formulaire de login
                 //1-on récupère le username
@@ -261,8 +262,10 @@ class UsersController extends ParentController
                     'email' => $email,
                     ];
                     $this->usersManager->updateUser();
-                $url = "?page=users::update";
+                    
+                $url = "?page=users::parameter";
                 $this->redirect($url);
+                throw new \Exception("données modifiées avec succés");
             }catch(\Exception $e){
                 $errorMessage = $e->getMessage();
             }   
