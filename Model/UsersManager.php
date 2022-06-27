@@ -3,7 +3,7 @@
 namespace Model;
 
 require_once("Model/myPDO.php");
-require_once("Model/User.php");
+//require_once("Model/User.php");
 
 class UsersManager extends \myPDO{
     private $users;
