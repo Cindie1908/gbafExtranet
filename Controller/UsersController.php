@@ -57,7 +57,11 @@ class UsersController extends ParentController
     }
     public function inviteUsername(){
         require "view/inviteUsername.php";
-    }    
+    } 
+    
+    public function showError($msg){
+        require "view/viewError.php";
+    }
 
     public function deconnect()
     {

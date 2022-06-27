@@ -1,6 +1,8 @@
 
 <?php
 
+use Controller\UsersController;
+
 require('vendor/autoload.php');
 session_start();
 
@@ -20,5 +22,6 @@ session_start();
                     }
                     catch(Exception $e){
                         $msg = $e->getMessage();
-                        require "view/viewError.php";
+                        $usersController = new UsersController();
+                        $usersController->showError($msg);
                     }
