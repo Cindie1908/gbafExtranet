@@ -26,14 +26,15 @@ class UsersController extends ParentController
                     throw new \Exception("username inconnu");
                 }
                 //3-si récupéré, on compare les password
-                if($user->getPassword() !== $_POST['password'] ){
-                    throw new \Exception("mauvais mot de passe");
-                }
-                //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur                    
-                $_SESSION["user"] = $user;
-                $_SESSION["idUser"] = $user->getIdUser();
-                $url = "?page=users::homeUser";
-                $this->redirect($url);
+                if(password_verify( $_POST['password'], $user->getPassword())){
+                    //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur
+                    echo "mot de passe correct";     
+                    $_SESSION["user"] = $user;
+                    $_SESSION["idUser"] = $user->getIdUser();
+                    $url = "?page=users::homeUser";
+                    $this->redirect($url);
+                }         
+                throw new \Exception("mauvais mot de passe");
             }catch(\Exception $e){
                 $errorMessage = $e->getMessage();
             }   
@@ -200,7 +201,7 @@ class UsersController extends ParentController
             }
             $users =[
             'username' => $username = $postData['username'],
-            'password' => $password = $postData['password'],
+            'password' => $password = password_hash($postData['password'],PASSWORD_DEFAULT),
             'nom' => $nom = $postData['nom'],
             'prénom' => $prénom = $postData['prénom'],
             'id_question' => $id_question = intval(substr($postData['question'],0,1)),

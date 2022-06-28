@@ -59,7 +59,7 @@ class UsersManager extends \myPDO{
         }
 
         $username = $postData['username'];
-        $password = $postData['password'];
+        $password = password_hash($postData['password'],PASSWORD_DEFAULT);
         $nom = $postData['nom'];
         $prénom = $postData['prénom'];
         $id_question = intval(substr($postData['question'],0,1));
