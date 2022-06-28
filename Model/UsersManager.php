@@ -122,6 +122,18 @@ class UsersManager extends \myPDO{
             'reponse' => $reponse,
             'email' => $email,
             ]);
-
     }
+    public function getUsername(){
+    //récupération des usernames de la table users
+        $db = \myPDO::dbConnect();
+        $stmt = $db->prepare("SELECT username FROM `users`");
+        $stmt->execute();
+        $usernames = $stmt->fetchAll();
+        dd($usernames);
+        //foreach ($users as $user){
+            //$username = new User($user['username']);
+        //}
+        
+    }
+
 }

@@ -28,7 +28,7 @@ class UsersController extends ParentController
                 //3-si récupéré, on compare les password
                 if(password_verify( $_POST['password'], $user->getPassword())){
                     //4-si OK, on créé le user en session $_session, on redirige sur viewActors, sinon page de login avec msg d'erreur
-                    echo "mot de passe correct";     
+                    echo "identification réussie";     
                     $_SESSION["user"] = $user;
                     $_SESSION["idUser"] = $user->getIdUser();
                     $url = "?page=users::homeUser";
@@ -56,6 +56,11 @@ class UsersController extends ParentController
     public function inscription(){
         require "view/inscription.php";
     }
+
+    public function redirection(){
+        require "view/redirection.php";
+    } 
+
     public function inviteUsername(){
         require "view/inviteUsername.php";
     } 
@@ -180,7 +185,7 @@ class UsersController extends ParentController
         require "view/getNewPassword.php";    
     }
         
-    public function creation()
+    /*public function creation()
     {
         if($this->isPost())
         {
@@ -213,6 +218,55 @@ class UsersController extends ParentController
 
             $url = "?page=users::login";
             $this->redirect($url);
+        }
+    }*/
+
+    public function creation()
+    {
+        if($this->isPost())
+        {
+            $postData = $_POST;
+
+
+//1-on récupère le username
+$username = $_POST['username'] ?? "";
+//2-on récupère les infos de l'user de la bdd
+    $usercheck = $this->usersManager->getUserByUsername($username);
+    //dump($usercheck, "test");
+    if($usercheck)
+    {
+        echo("identifiant déjà utilisé");
+        $url = "?page=users::redirection";
+        $this->redirect($url);  
+          
+    } 
+    if(
+        $postData['username'] !== "" &&
+        $postData['password'] !== "" &&
+        $postData['nom'] !== "" &&
+        $postData['prénom'] !== "" &&
+        $postData['question'] !== "" &&
+        $postData['réponse'] !== "" &&
+        $postData['email'] !== ""
+    )
+    {
+        $users =[
+            'username' => $username = $postData['username'],
+            'password' => $password = password_hash($postData['password'],PASSWORD_DEFAULT),
+            'nom' => $nom = $postData['nom'],
+            'prénom' => $prénom = $postData['prénom'],
+            'id_question' => $id_question = intval(substr($postData['question'],0,1)),
+            'réponse' => $réponse = $postData['réponse'],
+            'email' => $email = $postData['email'],
+            ];
+        $this->usersManager->insertNewUser();
+        $url = "?page=users::login";
+        $this->redirect($url);  
+    }
+    {
+        echo('tous les champs sont requis');
+        return;
+    }
         }
     }
 
