@@ -3,7 +3,7 @@
 namespace Controller;
 
 
-class CommentsController /*extends ParentController*/
+class CommentsController extends ParentController
 {
     private $commentsManager;
 
@@ -23,19 +23,20 @@ class CommentsController /*extends ParentController*/
         require "view/viewComments.php";
     }
 
-    public function postCommentForAnActor(){
-        if (!isset($_POST['commentmsg']))
-            {
-                echo('votre commentaire est vide');
-                return;
-            }
 
-        $user=$_SESSION["user"];
-        $id_user= $user->getIdUser();
+    public function postCommentForAnActor(){
+            $user = $this->getUser();
+            $id_actor = $_GET['id'];
+            $id_user= $user->getIdUser();
+        $comment = $this->commentsManager->getCommentByUser($user->getIdUser(),$id_actor);
+        if($comment !== null){
+            //si l'un des 2 activé > on ne fait rien
+                throw new \Exception("vous avez déjà posté un commentaire pour ce partenaire");
+            }  
         $comments =[
             'comment' => $comment = $_POST['commentmsg'],
             'id_user' => $id_user,
-            'id_actor' => $id_actor = $_POST['id_actor'],
+            'id_actor' => $id_actor,
         ];
         $this->commentsManager->addCommentBd($comment,$id_user,$id_actor);
         $url = "?page=actors::viewAnActor&id=$id_actor";

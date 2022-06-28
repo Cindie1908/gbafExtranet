@@ -5,7 +5,7 @@ require_once "Controller/CommentsController.php";
         $id_actor = $_GET['id'];
 
 ?>
-<form method="POST" action="?page=comments::postCommentForAnActor">
+<form method="POST" action="?page=comments::postCommentForAnActor&id=<?= $id ?>">
     <div class="mb">
         <input type="text" class="commentmsg" id="commentmsg" name="commentmsg" placeholder="Votre commentaire">
     </div>
