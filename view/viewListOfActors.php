@@ -14,11 +14,11 @@ ob_start();
     for($i=0; $i < count($actors);$i++) : 
 ?>
     <div class="vignette">
-        <div >
+        <div class="logoflex">
             <img class="logo-vignette" alt=<?= $actors[$i]->getLogo(); ?> src="<?= $actors[$i]->getLogo(); ?>")>
         </div>
         <div class="displayvignette">
-            <p><?= $actors[$i]->getTitre(); ?></p>
+            <h3><?= $actors[$i]->getTitre(); ?></h3>
             <p><?= substr($actors[$i]->getDescription(),0,120); ?> ...</p>
             <a class="lirelasuite" href="?page=actors::viewAnActor&id=<?=$actors[$i]->getIdActor(); ?>">Lire la suite</a>
         </div>
