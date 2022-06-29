@@ -9,7 +9,8 @@ class SumLikesManager extends \myPDO{
     private $sumLikes = [];
 
     public function addSumLike($sumLike){
-        $this->sumLikes[$sumLike->getidActor()] = $sumLike;
+        //$this->sumLikes[$sumLike->getidActor()] = $sumLike;
+        $this->sumLikes[] = $sumLike;
     }
 
     public function getSumLikes(){
@@ -32,6 +33,7 @@ class SumLikesManager extends \myPDO{
                 $this->addSumLike($l);
             }
         }
+
 
     public function getSumLikeById($id){
         for($i=0; $i < count($this->sumLikes);$i++){

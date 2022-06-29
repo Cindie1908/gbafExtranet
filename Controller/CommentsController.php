@@ -42,4 +42,6 @@ class CommentsController extends ParentController
         $url = "?page=actors::viewAnActor&id=$id_actor";
         header("Location: http://localhost/gbafExtranetCode".$url);
     }
+
+
 }

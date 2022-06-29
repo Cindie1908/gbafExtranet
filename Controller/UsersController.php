@@ -105,7 +105,7 @@ class UsersController extends ParentController
                 $users =[
                     'username' => $username = $user->getUsername(),
                     'idUser' => $idUser = $user->getIdUser(),
-                    'password' => $password,
+                    'password' => $password = password_hash($postData['password'],PASSWORD_DEFAULT),
                     'id_question' => $id_question= $user->getIdQuestion(),
                     'reponse' => $reponse= $user->getReponse(),
                     'email' => $email= $user->getEmail(),
@@ -315,7 +315,7 @@ $username = $_POST['username'] ?? "";
                 $users =[
                     'username' => $username = $user->getUsername(),
                     'idUser' => $idUser = $user->getIdUser(),
-                    'password' => $password,
+                    'password' => $password = password_hash($postData['password'],PASSWORD_DEFAULT),
                     'id_question' => $id_question,
                     'reponse' => $reponse,
                     'email' => $email,

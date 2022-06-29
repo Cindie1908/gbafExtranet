@@ -14,13 +14,39 @@ ob_start();
                 <div class="container-like">
                     <a href="?page=likes::postLikeForAnActor&id=<?= $id ?>"><img class="logo-profile" alt="like" src="./Images/like.png" )></a>
                         <?php $id = $_GET['id'];
-                        if($sumLike->getLikeSum() !== null){
-                            echo $sumLike->getLikeSum();
+                        /*if($sumLikes->getSumLikeById($id) !== null){
+                            echo $sumLikes->getLikeSum();
+                        }*/
+                        if($sumLikes !== null){
+                            for($i=0; $i < count($sumLikes);$i++) : 
+                            $url = explode("/",filter_var($_GET['page']),FILTER_SANITIZE_URL);  
+                            $id = $_GET['id'];
+                            $test=$sumLikes[$i]->getIdActor();
+                            //dump($sumLikes[$i],$test);
+                            if($sumLikes[$i]->getIdActor() === $id){
+                                echo $sumLikes[$i]->getLikeSum();
+                            }
+                            endfor; 
                         }
                         ?> 
                     <a href="?page=likes::postDislikeForAnActor&id=<?= $id ?>"><img class="logo-profile" alt="dislike" src="./Images/dislike.png" )></a>   
                         <?php $id = $_GET['id'];
-                        echo $sumLike->getDislikeSum();?>   
+                        //echo $sumLikes->getDislikeSum();
+                        //dump($sumLikes);
+                        if($sumLikes !== null){
+                            for($i=0; $i < count($sumLikes);$i++) : 
+                            $url = explode("/",filter_var($_GET['page']),FILTER_SANITIZE_URL);  
+                            $id = $_GET['id'];
+                            $test=$sumLikes[$i]->getIdActor();
+                            //dump($sumLikes[$i],$test);
+                            if($sumLikes[$i]->getIdActor() === $id){
+                                echo $sumLikes[$i]->getDislikeSum();
+                            }
+                            endfor; 
+                        }
+
+                           
+                        ?>   
                     <?php $id = $_GET['id'];
                     ?>   
                 </div>                                     

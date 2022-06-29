@@ -29,11 +29,46 @@ class ActorsController extends ParentController
     {
         $id = $_GET['id'];
         $actorById = $this->actorsManager->getActorById($id);
-        $sumLikes = $this->SumLikesManager->getSumLikes();
-        $comments = $this->CommentsManager->getComments();
+        $sumLikes = $this->SumLikesManager->getSumLikeById($id);
+        if($sumLikes===null){
+            $sumLikes =
+            [
+                /*'sumLike' => 0,
+                'dislikeSum' => 0,
+                'idActor' => $id,*/
+            ];
+            //dump($sumLike);
+        }
+        {
+            $sumLikes = $this->SumLikesManager->getSumLikes();
+        }
+            
+        
+        //$comments = $this->CommentsManager->getCommentsById($id);
+        $comments = $this->CommentsManager->getCommentsByActor($id);
+        //dump($comments);
+        if($comments===null){
+            $comments =
+            [
+                /*'commentDate' => "",
+                'commentText' => "",
+                'idUser' => "",
+                'idActor' => "",
+                'idComment' => "",
+                'name' => "",
+                'firstname' => "",*/
+            ];
+        
+        //dump($comment);
+        }else
+        {
+            $comments = $this->CommentsManager->getComments();
+            //$comment = $comments[$id];
+            //dump($comment);
+        }
         $user = $this->getUser();
-        $sumLike = $sumLikes[$id];
-        $comment = $comments[$id];
+        //$sumLike = $sumLikes[$id];
+        
         require "view/viewActor.php";
     }
 }

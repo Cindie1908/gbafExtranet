@@ -62,4 +62,35 @@ class CommentsManager extends \myPDO{
         }
         return new Comment($comment['commentdate'],$comment['commentText'],$comment['id_user'],$comment['id_actor'],$comment['id_comment'],$comment['nom'],$comment['prenom']);
     }
+
+    public function getCommentsByActor($id_actor)
+    {
+    //récupération des données de la table like
+        $db = \myPDO::dbConnect();
+        $stmt = $db->prepare("SELECT DATE_FORMAT(commentdate,'%d/%m/%Y') AS commentdate, comment AS commentText,comments.id_user AS id_user,id_actor,id_comment,nom,prenom FROM `comments` inner join `users` ON comments.id_user=users.id_user  WHERE comments.id_actor = :idActor");
+        $stmt->execute([
+            'idActor' => $id_actor,   
+        ]);
+        $comment = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if($comment=== false){
+            return null;
+        }
+        return new Comment($comment['commentdate'],$comment['commentText'],$comment['id_user'],$comment['id_actor'],$comment['id_comment'],$comment['nom'],$comment['prenom']);
+        /*$comments = $stmt->fetchAll();
+        foreach ($comments as $comment){
+            /*if($comment=== false){
+                return null;
+            }*/
+            /*$comment = new Comment($comment['commentdate'],$comment['commentText'],$comment['id_user'],$comment['id_actor'],$comment['id_comment'],$comment['nom'],$comment['prenom']);
+             $this->addComment($comment);*/
+    //}
+}
+
+    /*public function getCommentsById($id){
+        for($i=0; $i < count($this->comments);$i++){
+            if($this->comments[$i]->getIdActor() === $id){
+                return $this->comments[$i];
+            }
+        }
+    }*/
 }

@@ -9,7 +9,7 @@ ob_start();
     <div class="page-creation">
         <div class="mb">
             <label for="password" class="form-label">Mot de passe :</label>
-            <input placeholder="<?php echo $user->getPassword(); ?>" type="password" class="form-control" id="password" name="password">
+            <input placeholder="***" type="password" class="form-control" id="password" name="password">
         </div>
         <div class="flexrow">
             <div class="mb">
